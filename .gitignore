@@ -1,35 +1,3 @@
-#############
-#  general  #
-#############
-*.zip
-*.ini
-*.jpg
-*.png
-chart/
-contract/
-literature/
-old_results/
-plans/
-second_results/
-tuning/
-tuning_instances/
-
-#########
-#  tex  #
-#########
-*.aux
-*.bbl
-*.bcf
-*.blg
-*.fdb_latexmk
-*.fls
-*.log
-*.out
-*.run.xml
-*.synctex.gz
-*.toc
-*.lox
-
 #########
 #  vim  #
 #########
