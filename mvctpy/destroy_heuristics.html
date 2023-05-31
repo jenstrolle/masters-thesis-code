@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module destroy_heuristics</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>destroy_heuristics</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/trolle/thesis/mvctpy/destroy_heuristics.py">/home/trolle/thesis/mvctpy/destroy_heuristics.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="random.html">random</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-least_covering"><strong>least_covering</strong></a>(gamma, S, S_nodes, covering, dists, args)</dt><dd><tt>Applies&nbsp;the&nbsp;Least&nbsp;Covering&nbsp;Removal&nbsp;Heuristic&nbsp;to&nbsp;a&nbsp;solution&nbsp;S.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;gamma:&nbsp;number&nbsp;of&nbsp;nodes&nbsp;to&nbsp;remove<br>
+&nbsp;&nbsp;&nbsp;&nbsp;S:&nbsp;current&nbsp;solution<br>
+&nbsp;&nbsp;&nbsp;&nbsp;S_nodes:&nbsp;nodes&nbsp;in&nbsp;current&nbsp;solution<br>
+&nbsp;&nbsp;&nbsp;&nbsp;covering:&nbsp;matrix&nbsp;of&nbsp;nodes&nbsp;covered&nbsp;by&nbsp;each&nbsp;route<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dists:&nbsp;distance&nbsp;matrix<br>
+&nbsp;&nbsp;&nbsp;&nbsp;args:&nbsp;command&nbsp;line&nbsp;arguments<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;includes&nbsp;eta,&nbsp;the&nbsp;randomness&nbsp;parameter<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;the&nbsp;least&nbsp;covering&nbsp;removal&nbsp;heuristic<br>
+&nbsp;<br>
+outputs:&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;F:&nbsp;set&nbsp;of&nbsp;nodes&nbsp;to&nbsp;remove</tt></dd></dl>
+ <dl><dt><a name="-random_removal"><strong>random_removal</strong></a>(gamma, S, S_nodes, covering, dists, args)</dt><dd><tt>Applies&nbsp;the&nbsp;Random&nbsp;Removal&nbsp;Heuristic&nbsp;to&nbsp;a&nbsp;solution&nbsp;S.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;gamma:&nbsp;number&nbsp;of&nbsp;nodes&nbsp;to&nbsp;remove<br>
+&nbsp;&nbsp;&nbsp;&nbsp;S:&nbsp;current&nbsp;solution<br>
+&nbsp;&nbsp;&nbsp;&nbsp;S_nodes:&nbsp;nodes&nbsp;in&nbsp;current&nbsp;solution<br>
+&nbsp;&nbsp;&nbsp;&nbsp;covering:&nbsp;matrix&nbsp;of&nbsp;nodes&nbsp;covered&nbsp;by&nbsp;each&nbsp;route<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dists:&nbsp;distance&nbsp;matrix<br>
+&nbsp;&nbsp;&nbsp;&nbsp;args:&nbsp;command&nbsp;line&nbsp;arguments<br>
+&nbsp;<br>
+Outputs:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;F:&nbsp;set&nbsp;of&nbsp;nodes&nbsp;to&nbsp;remove</tt></dd></dl>
+ <dl><dt><a name="-shaw"><strong>shaw</strong></a>(gamma, S, S_nodes, covering, dists, args)</dt><dd><tt>Applies&nbsp;the&nbsp;Shaw&nbsp;Removal&nbsp;Heuristic&nbsp;to&nbsp;a&nbsp;solution&nbsp;S.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;gamma:&nbsp;number&nbsp;of&nbsp;nodes&nbsp;to&nbsp;remove<br>
+&nbsp;&nbsp;&nbsp;&nbsp;S:&nbsp;current&nbsp;solution<br>
+&nbsp;&nbsp;&nbsp;&nbsp;S_nodes:&nbsp;nodes&nbsp;in&nbsp;current&nbsp;solution<br>
+&nbsp;&nbsp;&nbsp;&nbsp;covering:&nbsp;matrix&nbsp;of&nbsp;nodes&nbsp;covered&nbsp;by&nbsp;each&nbsp;route<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dists:&nbsp;distance&nbsp;matrix<br>
+&nbsp;&nbsp;&nbsp;&nbsp;args:&nbsp;command&nbsp;line&nbsp;arguments<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;includes&nbsp;delta,&nbsp;the&nbsp;randomness<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parameter&nbsp;for&nbsp;the&nbsp;shaw&nbsp;removal&nbsp;heuristic<br>
+&nbsp;<br>
+Outputs:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;F:&nbsp;set&nbsp;of&nbsp;nodes&nbsp;to&nbsp;remove</tt></dd></dl>
+ <dl><dt><a name="-worst_removal"><strong>worst_removal</strong></a>(gamma, S, S_nodes, covering, dists, args)</dt><dd><tt>Applies&nbsp;the&nbsp;Worst&nbsp;Removal&nbsp;Heuristic&nbsp;to&nbsp;a&nbsp;solution&nbsp;S.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;gamma:&nbsp;number&nbsp;of&nbsp;nodes&nbsp;to&nbsp;remove<br>
+&nbsp;&nbsp;&nbsp;&nbsp;S:&nbsp;current&nbsp;solution<br>
+&nbsp;&nbsp;&nbsp;&nbsp;S_nodes:&nbsp;nodes&nbsp;in&nbsp;current&nbsp;solution<br>
+&nbsp;&nbsp;&nbsp;&nbsp;covering:&nbsp;matrix&nbsp;of&nbsp;nodes&nbsp;covered&nbsp;by&nbsp;each&nbsp;route<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dists:&nbsp;distance&nbsp;matrix<br>
+&nbsp;&nbsp;&nbsp;&nbsp;args:&nbsp;command&nbsp;line&nbsp;arguments<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;includes&nbsp;lambd,&nbsp;the&nbsp;randomness&nbsp;parameter&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;the&nbsp;worst&nbsp;removal&nbsp;heuristic<br>
+&nbsp;<br>
+Outputs:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;F:&nbsp;set&nbsp;of&nbsp;nodes&nbsp;to&nbsp;remove</tt></dd></dl>
+</td></tr></table>
+</body></html>

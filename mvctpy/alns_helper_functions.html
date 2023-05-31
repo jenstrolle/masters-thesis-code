@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module alns_helper_functions</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>alns_helper_functions</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/trolle/thesis/mvctpy/alns_helper_functions.py">/home/trolle/thesis/mvctpy/alns_helper_functions.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="math.html">math</a><br>
+</td><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="matplotlib.pyplot.html">matplotlib.pyplot</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-accept_solution"><strong>accept_solution</strong></a>(current_obj, new_obj, temp)</dt><dd><tt>Accepts&nbsp;a&nbsp;solution&nbsp;based&nbsp;on&nbsp;the&nbsp;simulated&nbsp;annealing&nbsp;acceptance&nbsp;criterion.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;current_obj:&nbsp;objective&nbsp;value&nbsp;of&nbsp;current&nbsp;solution<br>
+&nbsp;&nbsp;&nbsp;&nbsp;new_obj:&nbsp;objective&nbsp;value&nbsp;of&nbsp;new&nbsp;solution<br>
+&nbsp;&nbsp;&nbsp;&nbsp;temp:&nbsp;current&nbsp;temperature<br>
+&nbsp;&nbsp;&nbsp;&nbsp;args:&nbsp;command&nbsp;line&nbsp;arguments<br>
+&nbsp;<br>
+Outputs:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;accept:&nbsp;boolean&nbsp;indicating&nbsp;whether&nbsp;to&nbsp;accept&nbsp;the&nbsp;new&nbsp;solution<br>
+&nbsp;&nbsp;&nbsp;&nbsp;accept_type:&nbsp;type&nbsp;of&nbsp;acceptance</tt></dd></dl>
+ <dl><dt><a name="-choose_heuristic"><strong>choose_heuristic</strong></a>(heuristics)</dt><dd><tt>Chooses&nbsp;a&nbsp;heuristic&nbsp;to&nbsp;apply&nbsp;based&nbsp;on&nbsp;the&nbsp;weights&nbsp;of&nbsp;each&nbsp;heuristic.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;heuristics:&nbsp;dictionary&nbsp;of&nbsp;heuristics&nbsp;and&nbsp;their&nbsp;weights<br>
+&nbsp;<br>
+Outputs:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;heuristic:&nbsp;heuristic&nbsp;to&nbsp;apply</tt></dd></dl>
+ <dl><dt><a name="-plot_results"><strong>plot_results</strong></a>(instance, start_sol, best_sol, objs, best_objs, weights_1, weights_2)</dt><dd><tt>Plots&nbsp;the&nbsp;results&nbsp;of&nbsp;the&nbsp;ALNS&nbsp;algorithm.</tt></dd></dl>
+ <dl><dt><a name="-update_score"><strong>update_score</strong></a>(destroy_heurs, repair_heurs, current_destroy, current_repair, score_type, args_dict)</dt><dd><tt>Updates&nbsp;the&nbsp;score&nbsp;of&nbsp;each&nbsp;heuristic&nbsp;based&nbsp;on&nbsp;the&nbsp;type&nbsp;of&nbsp;score.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;destroy_heurs:&nbsp;dictionary&nbsp;of&nbsp;destroy&nbsp;heuristics&nbsp;and&nbsp;their&nbsp;scores<br>
+&nbsp;&nbsp;&nbsp;&nbsp;repair_heurs:&nbsp;dictionary&nbsp;of&nbsp;repair&nbsp;heuristics&nbsp;and&nbsp;their&nbsp;scores<br>
+&nbsp;&nbsp;&nbsp;&nbsp;current_destroy:&nbsp;current&nbsp;destroy&nbsp;heuristic<br>
+&nbsp;&nbsp;&nbsp;&nbsp;current_repair:&nbsp;current&nbsp;repair&nbsp;heuristic<br>
+&nbsp;&nbsp;&nbsp;&nbsp;score_type:&nbsp;type&nbsp;of&nbsp;score&nbsp;to&nbsp;update<br>
+&nbsp;&nbsp;&nbsp;&nbsp;args_dict:&nbsp;dictionary&nbsp;of&nbsp;command&nbsp;line&nbsp;arguments<br>
+&nbsp;<br>
+Outputs:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;destroy_heurs:&nbsp;dictionary&nbsp;of&nbsp;destroy&nbsp;heuristics&nbsp;and&nbsp;their&nbsp;scores&nbsp;with&nbsp;updated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scores<br>
+&nbsp;&nbsp;&nbsp;&nbsp;repair_heurs:&nbsp;dictionary&nbsp;of&nbsp;repair&nbsp;heuristics&nbsp;and&nbsp;their&nbsp;scores&nbsp;with<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;updated&nbsp;scores</tt></dd></dl>
+ <dl><dt><a name="-update_temp"><strong>update_temp</strong></a>(temp, args)</dt><dd><tt>Updates&nbsp;the&nbsp;temperature&nbsp;based&nbsp;on&nbsp;the&nbsp;cooling&nbsp;schedule.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;temp:&nbsp;current&nbsp;temperature<br>
+&nbsp;&nbsp;&nbsp;&nbsp;args:&nbsp;command&nbsp;line&nbsp;arguments<br>
+&nbsp;<br>
+Outputs:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;temp:&nbsp;updated&nbsp;temperature</tt></dd></dl>
+ <dl><dt><a name="-update_weights"><strong>update_weights</strong></a>(heuristics, args)</dt><dd><tt>Updates&nbsp;the&nbsp;weights&nbsp;of&nbsp;each&nbsp;heuristic&nbsp;based&nbsp;on&nbsp;the&nbsp;scores&nbsp;of&nbsp;each<br>
+heuristic.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;heuristics:&nbsp;dictionary&nbsp;of&nbsp;heuristics&nbsp;and&nbsp;their&nbsp;weights<br>
+&nbsp;&nbsp;&nbsp;&nbsp;args:&nbsp;command&nbsp;line&nbsp;arguments<br>
+&nbsp;<br>
+Outputs:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;heuristics:&nbsp;dictionary&nbsp;of&nbsp;heuristics&nbsp;and&nbsp;their&nbsp;weights&nbsp;with&nbsp;updated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;weights</tt></dd></dl>
+</td></tr></table>
+</body></html>
