@@ -52,15 +52,13 @@ if __name__ == "__main__":
     for ins in instances:
         print(ins)
         instance = tsp_to_mvctp_instance(f'../instances/{ins}')
-        with open(f'/home/trolle/thesis/results/{ins[:-4]}', 'a+') as f:
-            f.write('obj time\n')
-            for run_number in range(args.runs):
-                print(f'Run number: {run_number}')
-                print(args)
-                # could implement timer decorator
-                st = time.process_time()
-                sol = ALNS(instance, args)
-                ed = time.process_time()
-                f.write(f'{sol} {ed-st}\n')
+        for run_number in range(args.runs):
+            print(f'Run number: {run_number}')
+            print(args)
+            # could implement timer decorator
+            st = time.process_time()
+            sol = ALNS(instance, args)
+            ed = time.process_time()
+            print(f'Best solution found: {sol}\n Computation time: {ed-st}\n')
 
 
