@@ -1,12 +1,12 @@
 #!/usr/bin/python3
-from mvctpy.alns_helper_functions import choose_heuristic, update_weights, update_score, update_temp, accept_solution, plot_results
-from mvctpy.destroy_heuristics import random_removal, shaw, worst_removal, least_covering
-from mvctpy.repair_heuristics import greedy_insertion, k_regret, random_insertion
+from .alns_helper_functions import choose_heuristic, update_weights, update_score, update_temp, accept_solution, plot_results
+from .destroy_heuristics import random_removal, shaw, worst_removal, least_covering
+from .repair_heuristics import greedy_insertion, k_regret, random_insertion
 
-from mvctpy.greedy_set_covering_heuristic import set_covering_solver
-from mvctpy.tsp_to_mvctp import tsp_to_mvctp_instance as tsp
+from .greedy_set_covering_heuristic import set_covering_solver
+from .tsp_to_mvctp import tsp_to_mvctp_instance as tsp
 
-from mvctpy.utils import *
+from .utils import *
 
 import argparse
 import math
@@ -18,43 +18,12 @@ def ALNS(instance, params):
     instance.
 
     Parameters:
-        instance: instance object
-        params: command line arguments
-            - includes phi, the number of iterations
-                to run the algorithm for
-            - includes tau, the number of iterations
-                between weight updates
+        instance (tsp_to_mvctp_instance): instance object
 
-            - includes w, the percentage deviation allowed
-                from the initial solution such that a solution
-                is accepted with probability 1/2
-            - includes c, the cooling factor
-            - includes r, the weight update factor
-
-            - includes s1, the score for accepting a solution
-                a current global best solution 
-            - includes s2, the score for accepting a solution
-                that is better than the current solution
-            - includes s3, the score for accepting a solution
-                that is worse than the current solution
-
-            - includes epsilon, the upper limit on the number
-                of nodes to remove in a single iteration
-
-            - includes alpha, the randomness parameter
-                for the greedy set covering heuristic
-            - includes delta, the randomness parameter
-                for the shaw removal heuristic
-            - includes lambd, the randomness parameter
-                for the worst removal heuristic
-            - includes eta, the randomness parameter
-                for the least covering removal heuristic
-
-            - includes plot, a boolean indicating whether
-                to plot the results of the algorithm
+        params (argparse.NameSpace): command line arguments
 
     Outputs:
-        best_obj: objective value of best solution found
+        best_obj (float): objective value of best solution found
 
     """
     # initialize dict of parameters
@@ -66,10 +35,10 @@ def ALNS(instance, params):
     N = instance.n
     v_size = instance.V_size
 
-    # initialize covering matrix 
+    # initialize covering matrix
     W_V_covering = B[v_size:, :v_size]
 
-    # set stop 
+    # set stop
     STOP = False
     i = 0
     params.noise = False
@@ -121,7 +90,7 @@ def ALNS(instance, params):
     all_destroy_weights = {'shaw':[1], 'random':[1], 'worst':[1], 'least_covering':[1]}
     all_repair_weights = {'greedy':[1], '2-regret':[1], '3-regret':[1],
                           '4-regret':[1], 'm-regret':[1], 'random':[1]}
-    
+
     # initialize lists for plotting purposes
     objs = []
     best_objs = []
@@ -167,7 +136,7 @@ def ALNS(instance, params):
         else:
             q = 0
 
-        # apply destroy heuristic 
+        # apply destroy heuristic
         cur_destroy_result = destroy_heuristics[cur_destroy]['func'](gamma, cur_sol, cur_nodes,
                                                             W_V_covering, D,
                                                             params)
@@ -176,7 +145,7 @@ def ALNS(instance, params):
         # remove destroyed nodes from solution
         cur_destroy_sol = routes_with_destruction_removed(cur_destroy_result, cur_sol)
         after_destroy = [0] + flatten(cur_destroy_sol)
-        
+
         # apply greedy set covering heuristic to destroyed solution
         new_sc_object = set_covering_solver(N, V, W, after_destroy,
                                             W_V_covering, D, params,
@@ -233,7 +202,7 @@ def ALNS(instance, params):
                 print(f'new best solution found: {best_sol} with objective {best_obj}')
 
             continue
-        
+
         # decide acceptance of new solution if it is not the best found so far
         accept, accept_type = accept_solution(cur_obj, new_obj, temp)
 
@@ -248,9 +217,9 @@ def ALNS(instance, params):
         # update temperature and iteration count
         temp = update_temp(temp, params)
         i += 1
-    
+
     if params.plot:
-        plot_results(instance, start_sol, best_sol, objs, best_objs, 
+        plot_results(instance, start_sol, best_sol, objs, best_objs,
                      all_repair_weights, all_destroy_weights)
 
         print(f'best objective found: {best_obj}\n',

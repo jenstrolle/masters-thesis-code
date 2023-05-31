@@ -1,4 +1,4 @@
-from mvctpy.utils import *
+from .utils import *
 import numpy as np
 import random
 
@@ -7,17 +7,20 @@ def shaw(gamma, S, S_nodes, covering, dists, args):
     Applies the Shaw Removal Heuristic to a solution S.
 
     Parameters:
-        gamma: number of nodes to remove
-        S: current solution
-        S_nodes: nodes in current solution
-        covering: matrix of nodes covered by each route
-        dists: distance matrix
-        args: command line arguments
-            - includes delta, the randomness
-              parameter for the shaw removal heuristic
+        gamma (int): number of nodes to remove
+
+        S (list): current solution
+
+        S_nodes (list): nodes in current solution
+
+        covering (np.array): matrix of nodes covered by each route
+
+        dists (np.array): distance matrix
+
+        args (argsparse.NameSpace): command line arguments
 
     Outputs:
-        F: set of nodes to remove
+        F (list): set of nodes to remove
     """
 
     delta = args.delta
@@ -48,17 +51,20 @@ def worst_removal(gamma, S, S_nodes, covering, dists, args):
     Applies the Worst Removal Heuristic to a solution S.
 
     Parameters:
-        gamma: number of nodes to remove
-        S: current solution
-        S_nodes: nodes in current solution
-        covering: matrix of nodes covered by each route
-        dists: distance matrix
-        args: command line arguments
-            - includes lambd, the randomness parameter 
-              for the worst removal heuristic
-    
+        gamma (int): number of nodes to remove
+
+        S (list): current solution
+
+        S_nodes (list): nodes in current solution
+
+        covering (np.array): matrix of nodes covered by each route
+
+        dists (np.array): distance matrix
+
+        args (argsparse.NameSpace): command line arguments
+
     Outputs:
-        F: set of nodes to remove  
+        F (list): set of nodes to remove
     """
 
     lambd = args.lambd
@@ -68,7 +74,7 @@ def worst_removal(gamma, S, S_nodes, covering, dists, args):
     temp_sol = S.copy()
     while len(F) < gamma:
         cost_list = []
-        edge_sol .alns_helper_func= [route_to_edges([0]+route+[0]) for route in temp_sol]
+        edge_sol = [route_to_edges([0]+route+[0]) for route in temp_sol]
         total_obj = objective(edge_sol, dists)
         for s in S_temp:
             _S = [[n for n in route if n != s] for route in temp_sol]
@@ -93,15 +99,20 @@ def random_removal(gamma, S, S_nodes, covering, dists, args):
     Applies the Random Removal Heuristic to a solution S.
 
     Parameters:
-        gamma: number of nodes to remove
-        S: current solution
-        S_nodes: nodes in current solution
-        covering: matrix of nodes covered by each route
-        dists: distance matrix
-        args: command line arguments
-    
+        gamma (int): number of nodes to remove
+
+        S (list): current solution
+
+        S_nodes (list): nodes in current solution
+
+        covering (np.array): matrix of nodes covered by each route
+
+        dists (np.array): distance matrix
+
+        args (argsparse.NameSpace): command line arguments
+
     Outputs:
-        F: set of nodes to remove  
+        F (list): set of nodes to remove
     """
 
     F = random.sample(S_nodes, gamma)
@@ -113,19 +124,21 @@ def least_covering(gamma, S, S_nodes, covering, dists, args):
     Applies the Least Covering Removal Heuristic to a solution S.
 
     Parameters:
-        gamma: number of nodes to remove
-        S: current solution
-        S_nodes: nodes in current solution
-        covering: matrix of nodes covered by each route
-        dists: distance matrix
-        args: command line arguments
-            - includes eta, the randomness parameter
-              for the least covering removal heuristic
-    
-    outputs:   
-        F: set of nodes to remove
-    """
+        gamma (int): number of nodes to remove
 
+        S (list): current solution
+
+        S_nodes (list): nodes in current solution
+
+        covering (np.array): matrix of nodes covered by each route
+
+        dists (np.array): distance matrix
+
+        args (argsparse.NameSpace): command line arguments
+
+    Outputs:
+        F (list): set of nodes to remove
+    """
     eta = args.eta
     row_sums = np.sum(covering, axis=0)
     F = []

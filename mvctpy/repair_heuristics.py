@@ -1,4 +1,4 @@
-from mvctpy.utils import *
+from .utils import *
 import numpy as np
 import random
 
@@ -7,12 +7,14 @@ def regret_value(costs, x_ik, q):
     Computes the regret value for each node in a solution.
 
     Parameters:
-        costs: matrix of costs for each node in each route
-        x_ik: matrix of indices of the q lowest costs for each node
-        q: number of lowest costs to consider
-    
+        costs (np.array): matrix of costs for each node in each route
+
+        x_ik (np.array): matrix of indices of the q lowest costs for each node
+
+        q (int): number of lowest costs to consider
+
     Outputs:
-        regrets: vector of regret values for each node
+        regrets (np.array): vector of regret values for each node
     """
 
     least_cost = costs[:, 0][:, np.newaxis]
@@ -21,19 +23,26 @@ def regret_value(costs, x_ik, q):
 
 def length_checker(routes, nodes, dists, max_length, args):
     """
-    Checks if a set of nodes can be inserted into a set of routes without
+    Checks if a list of nodes can be inserted into a list of routes without
     violating the maximum route length constraint.
 
     Parameters:
-        routes: set of routes
-        nodes: set of nodes to insert
-        dists: distance matrix
-        max_length: maximum route length
-        args: command line arguments
+        routes (list): list of routes
+
+        nodes (list): list of nodes to insert
+
+        dists (np.array): distance matrix
+
+        max_length (float): maximum route length
+
+        args (argsparse.NameSpace): command line arguments
+
     Outputs:
-        lengths: matrix of lengths of routes with nodes inserted
-        lengths_bool: matrix of booleans indicating whether a route is too long
-        length_info: list of tuples containing information about the insertion
+        lengths (np.array): matrix of lengths of routes with nodes inserted
+
+        lengths_bool (np.array): matrix of booleans indicating whether a route is too long
+
+        length_info (list): list of tuples containing information about the insertion
                         of each node into each route
     """
 
@@ -43,7 +52,7 @@ def length_checker(routes, nodes, dists, max_length, args):
     for i, node in enumerate(nodes):
         info = []
         for j, route in enumerate(routes):
-            obj, _, route = add_node_to_route(node, route, dists, args)
+            obj, _, route = add_node_to_route(node, route, dists)
             lengths[i, j] = obj
             info.append((obj, i, j, route))
         length_info.append(info)
@@ -56,15 +65,20 @@ def k_regret(old_solution, nodes_to_insert, dists, instance_length_info, regret_
     the new nodes from the set covering heuristic.
 
     Parameters:
-        old_solution: destroyed solution
-        nodes_to_insert: set of nodes to insert
-        dists: distance matrix
-        instance_length_info: information about the route constraints
-        regret_num: regret value to be applied
-        args: command line arguments
-    
+        old_solution (list): destroyed solution
+
+        nodes_to_insert (list): set of nodes to insert
+
+        dists (np.array): distance matrix
+
+        instance_length_info (tuple): information about the route constraints
+
+        regret_num (int): regret value to be applied
+
+        args (argsparse.NameSpace): command line arguments
+
     Outputs:
-        solution: new solution
+        solution (list): new solution
     """
 
     q = regret_num
@@ -180,19 +194,24 @@ def k_regret(old_solution, nodes_to_insert, dists, instance_length_info, regret_
 def random_insertion(old_solution, nodes_to_insert, dists, length_info,
                      regret_num, args):
     """
-    Applies the random insertion heuristic to a destroyed solution using 
+    Applies the random insertion heuristic to a destroyed solution using
     the new nodes from the set covering heuristic.
 
     Parameters:
-        old_solution: destroyed solution
-        nodes_to_insert: set of nodes to insert
-        dists: distance matrix
-        instance_length_info: information about the route constraints
-        regret_num: regret value to be applied
-        args: command line arguments
-    
+        old_solution (list): destroyed solution
+
+        nodes_to_insert (list): set of nodes to insert
+
+        dists (np.array): distance matrix
+
+        instance_length_info (tuple): information about the route constraints
+
+        regret_num (int): regret value to be applied
+
+        args (argsparse.NameSpace): command line arguments
+
     Outputs:
-        solution: new solution
+        solution (list): new solution
     """
 
     length_type, max_length = length_info
@@ -230,15 +249,20 @@ def greedy_insertion(old_solution, nodes_to_insert, dists, length_info,
     the new nodes from the set covering heuristic.
 
     Parameters:
-        old_solution: destroyed solution
-        nodes_to_insert: set of nodes to insert
-        dists: distance matrix
-        instance_length_info: information about the route constraints
-        regret_num: regret value to be applied
-        args: command line arguments
-    
+        old_solution (list): destroyed solution
+
+        nodes_to_insert (list): set of nodes to insert
+
+        dists (np.array): distance matrix
+
+        instance_length_info (tuple): information about the route constraints
+
+        regret_num (int): regret value to be applied
+
+        args (argsparse.NameSpace): command line arguments
+
     Outputs:
-        solution: new solution
+        solution (list): new solution
     """
 
     length_type, max_length = length_info
@@ -284,12 +308,14 @@ def add_node_to_route(node, route, dists):
     Adds a node to a route in its best place.
 
     Parameters:
-        node: node to insert
-        route: route to insert node into
-        dists: distance matrix
-    
+        node (int): node to insert
+
+        route (list): route to insert node into
+
+        dists (np.array): distance matrix
+
     Outputs:
-        best_place: tuple containing the best place to insert the node and the
+        best_place (tuple): tuple containing the best place to insert the node and the
                     route with the node inserted
     """
 
@@ -301,5 +327,5 @@ def add_node_to_route(node, route, dists):
         cur_route_edges = route_to_edges([0] + cur_route_nodes + [0])
         objectives.append((objective(cur_route_edges,
                                   dists, route=True), i, cur_route_nodes))
-    
+
     return min(objectives, key=lambda x:x[0])

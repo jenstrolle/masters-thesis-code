@@ -8,7 +8,7 @@ def get_coords(pts):
 
 def route_to_edges(route):
     """
-    Returns a list of edges from a route. 
+    Returns a list of edges from a route.
     """
     edges = []
     for idx, _ in enumerate(route):
@@ -55,6 +55,6 @@ def routes_with_destruction_removed(destruction, solution):
 
 def flatten(list_of_lists):
     """
-    Flattens a list of lists. 
+    Flattens a list of lists.
     """
     return list(chain(*list_of_lists))

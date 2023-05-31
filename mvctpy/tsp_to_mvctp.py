@@ -9,19 +9,19 @@ class tsp_to_mvctp_instance():
       Remaining nodes are assigned to W.
     - The distances c_ij are taken as the Euclidean distances between pairs of
       vertices -- with the larges covering distance c taken as the maximum of
-      the maximal distance between some j and the node in V \ T which is the
-      second closest node to j and the maximum of c_hj, for all h in V \ T and
+      the maximal distance between some j and the node in V \\ T which is the
+      second closest node to j and the maximum of c_hj, for all h in V \\ T and
       j in W. This leads to each node in W being covered by at least two
-      vertices in V \ T and each vertex in V \ T covering at least one vertex
+      vertices in V \\ T and each vertex in V \\ T covering at least one vertex
       in W.
     """
 
     def __init__(self, path):
         """
-        Initializes tsp_to_mvctp_instance class. 
+        Initializes tsp_to_mvctp_instance class.
 
         Parameters:
-            path: path to the .tsp file
+            path (str) : path to the .tsp file
         """
 
         self.nodes, self.length_info, self.V_size, self.T_size = self.open_file(path)
@@ -51,13 +51,18 @@ class tsp_to_mvctp_instance():
         Returns the parameters of the MVCTP instance.
 
         Output:
-            V: list of nodes in V
-            W: list of nodes in W
-            T: list of nodes in T
-            distances: distance matrix
-            all_covering: binary matrix with entries d_ij equal to 1 if and only
-                            if c_ij <= c for all v_i in V and v_j in V \ T
-            covering_distance: maximal distance a node in W can be from a node
+            V (list): list of nodes in V
+
+            W (list): list of nodes in W
+
+            T (list): list of nodes in T
+
+            distances (np.array): distance matrix
+
+            all_covering (np.array): binary matrix with entries d_ij equal to 1 if and only
+                            if c_ij <= c for all v_i in V and v_j in V \\ T
+
+            covering_distance (float): maximal distance a node in W can be from a node
                                 in V and still be covered
         """
         return self.V, self.W, self.T, self.distances, self.all_covering, self.covering_distance
@@ -68,10 +73,10 @@ class tsp_to_mvctp_instance():
         files.
 
         Parameters:
+            path (str): Path to .tsp file.
 
-        path: Path to .tsp file.
-
-        Returns: np.array of shape n x 2 containing Euclidean coordinates 
+        Outputs:
+            array (np.array): Array of shape n x 2 containing Euclidean coordinates
             of points in problem instance.
         """
         with open(path, 'r') as fi:
@@ -100,17 +105,12 @@ class tsp_to_mvctp_instance():
         Returns distance matrix C for MVCTP problem instance.
 
         Parameters:
+            self (self): containing nodes and n.
 
-        self :
-            - including nodes: np.array of shape n x 2
-                    With Euclidean coordinates of points in problem instance.
-            - including n: int
-                    Number of points in the problem instance.
-
-        Returns:
-            - np.array:
-                Symmetric and of shape n x n containing pairwise distances between
-                points in problem instance.
+        Outputs:
+            array (np.array): Symmetric np.array of shape n x n
+                              containing pairwise distances between
+                              points in problem instance.
         """
         n = self.n
         x = self.nodes
@@ -127,16 +127,7 @@ class tsp_to_mvctp_instance():
         in V and still be covered.
 
         Parameters:
-            self:
-            - Containing parameters:
-                W_distances : np.array
-                    Rows being indexed by nodes in W and columns by nodes
-                    in V \ T.
-                n : int
-                    Number of points in the problem instance
-                V : int
-                    Number of points in the set V.
-
+            self (self): containing W_distances, n and V.
         """
         second_shortest_indices = np.argsort(self.W_distances)[:, 1]
         second_shortest_list = self.W_distances[np.arange(self.n-self.V_size),
@@ -151,17 +142,10 @@ class tsp_to_mvctp_instance():
     def get_covering_matrix(self, matrix=None):
         """
         Returns binary np.array of shape (n-V_size x V_size-T_size) with entries
-        d_lh equal to 1 if and only if c_lh <= c for v_l in W and v_h in V \ T.
+        d_lh equal to 1 if and only if c_lh <= c for v_l in W and v_h in V \\ T.
 
         Parameters:
-        self :
-            Should contain parameters:
-                covering_distance : float
-                    maximal distance a node in W can be from a node in V and
-                    still be covered.
-                W_distances : np.array
-                    Rows being indexed by nodes in W and columns by nodes
-                    in V \ T.
+            self (self): containing covering_distance and W_distances
         """
 
         if matrix is None:

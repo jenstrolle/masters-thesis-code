@@ -1,5 +1,5 @@
 import numpy as np
-from mvctpy.utils import *
+from .utils import *
 
 class set_covering_solver:
     """
@@ -33,7 +33,7 @@ class set_covering_solver:
 
     def remove_previously_covered(self, U, S):
         """
-        Removes the nodes which are covered by the required nodes. 
+        Removes the nodes which are covered by the required nodes.
         """
         for required in self.used:
             # if covered vertex is the depot, add to sol and continue

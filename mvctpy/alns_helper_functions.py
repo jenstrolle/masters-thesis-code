@@ -1,6 +1,6 @@
 import numpy as np
 import math
-from mvctpy.utils import *
+from .utils import *
 import matplotlib.pyplot as plt
 
 def choose_heuristic(heuristics):
@@ -8,10 +8,10 @@ def choose_heuristic(heuristics):
     Chooses a heuristic to apply based on the weights of each heuristic.
 
     Parameters:
-        heuristics: dictionary of heuristics and their weights
-    
+        heuristics (dict): dictionary of heuristics and their weights
+
     Outputs:
-        heuristic: heuristic to apply
+        heuristic (str): heuristic to apply
     """
 
     w = np.zeros(len(heuristics))
@@ -31,14 +31,15 @@ def update_weights(heuristics, args):
     heuristic.
 
     Parameters:
-        heuristics: dictionary of heuristics and their weights
-        args: command line arguments
+        heuristics (dict): dictionary of heuristics and their weights
+
+        args (argsparse.NameSpace): command line arguments
 
     Outputs:
-        heuristics: dictionary of heuristics and their weights with updated
+        heuristics (dict): dictionary of heuristics and their weights with updated
                     weights
     """
-    
+
     r = args.r
 
     for heur in heuristics:
@@ -58,20 +59,26 @@ def update_score(destroy_heurs, repair_heurs, current_destroy, current_repair, s
     Updates the score of each heuristic based on the type of score.
 
     Parameters:
-        destroy_heurs: dictionary of destroy heuristics and their scores
-        repair_heurs: dictionary of repair heuristics and their scores
-        current_destroy: current destroy heuristic
-        current_repair: current repair heuristic
-        score_type: type of score to update
-        args_dict: dictionary of command line arguments
-    
+        destroy_heurs (dict): dictionary of destroy heuristics and their scores
+
+        repair_heurs (dict): dictionary of repair heuristics and their scores
+
+        current_destroy (str): current destroy heuristic
+
+        current_repair (str): current repair heuristic
+
+        score_type (str): type of score to update
+
+        args_dict (dict): dictionary of command line arguments
+
     Outputs:
-        destroy_heurs: dictionary of destroy heuristics and their scores with updated
+        destroy_heurs (dict): dictionary of destroy heuristics and their scores with updated
                     scores
-        repair_heurs: dictionary of repair heuristics and their scores with
+
+        repair_heurs (dict): dictionary of repair heuristics and their scores with
                     updated scores
     """
-    
+
     score_value = args_dict[score_type]
     destroy_heurs[current_destroy]['score']['value'] += score_value
     repair_heurs[current_repair]['score']['value'] += score_value
@@ -82,15 +89,17 @@ def accept_solution(current_obj, new_obj, temp):
     Accepts a solution based on the simulated annealing acceptance criterion.
 
     Parameters:
-        current_obj: objective value of current solution
-        new_obj: objective value of new solution
-        temp: current temperature
-        args: command line arguments
+        current_obj (float): objective value of current solution
+
+        new_obj (float): objective value of new solution
+
+        temp (float): current temperature
 
     Outputs:
-        accept: boolean indicating whether to accept the new solution
-        accept_type: type of acceptance
-    
+        accept (bool): boolean indicating whether to accept the new solution
+
+        accept_type (str): type of acceptance
+
     """
 
     better_than_old = (new_obj < current_obj)
@@ -113,22 +122,23 @@ def accept_solution(current_obj, new_obj, temp):
     return False, None
 
 def update_temp(temp, args):
-    """ 
+    """
     Updates the temperature based on the cooling schedule.
 
     Parameters:
-        temp: current temperature
-        args: command line arguments
-    
+        temp (float): current temperature
+
+        args (argsparse.NameSpace): command line arguments
+
     Outputs:
-        temp: updated temperature
+        temp (float): updated temperature
 
     """
     c = args.c
     return temp * c
 
 
-def plot_results(instance, start_sol, best_sol, objs, best_objs, 
+def plot_results(instance, start_sol, best_sol, objs, best_objs,
                  weights_1, weights_2):
     """
     Plots the results of the ALNS algorithm.
@@ -138,7 +148,7 @@ def plot_results(instance, start_sol, best_sol, objs, best_objs,
     v_size = instance.V_size
 
     t = nodes[:t_size]
-    W = nodes[v_size:] 
+    W = nodes[v_size:]
     W_coords = get_coords(W)
     t_coords = get_coords(t)
 
