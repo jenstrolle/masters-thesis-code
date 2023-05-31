@@ -7,7 +7,7 @@ by [[1]](#1) in the way presented by [[2]](#2).
 
 ## Installation
 
-The package is installed by cloning the repository to your machine
+The package can be installed by cloning the repository to your machine
 
 ```bash
 git clone https://github.com/jenstrolle/masters-thesis-code
