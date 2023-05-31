@@ -1,6 +1,6 @@
 import numpy as np
 import math
-from .utils import *
+from utils import *
 import matplotlib.pyplot as plt
 
 def choose_heuristic(heuristics):

@@ -1,16 +1,16 @@
 if __name__ == "__main__":
     import argparse
     import time
-    from .alns import ALNS
-    from .tsp_to_mvctp import tsp_to_mvctp_instance
+    from alns import ALNS
+    from tsp_to_mvctp import tsp_to_mvctp_instance
 
 
     desc = "Run ALNS method on a set of instances."
     parser = argparse.ArgumentParser(description=desc)
-    parser.add_argument("--partial", help="run on a subset of instances", action="store_true")
-    parser.add_argument("--runs", help="number of runs", default=1)
+    parser.add_argument("-p", "--partial", help="run on a subset of instances", action="store_true")
+    parser.add_argument("-r", "--runs", type=int, help="number of runs", default=1)
 
-    args = parser.parse_args()
+    running_args = parser.parse_args()
 
     # default parameters
     params = {
@@ -33,7 +33,7 @@ if __name__ == "__main__":
 
     # run on some instances
 
-    if args.partial:
+    if running_args.partial:
         instances = [
             'A-1-100-100-4.tsp'
         ]
@@ -52,10 +52,9 @@ if __name__ == "__main__":
     for ins in instances:
         print(ins)
         instance = tsp_to_mvctp_instance(f'../instances/{ins}')
-        for run_number in range(args.runs):
+        for run_number in range(running_args.runs):
             print(f'Run number: {run_number}')
             print(args)
-            # could implement timer decorator
             st = time.process_time()
             sol = ALNS(instance, args)
             ed = time.process_time()

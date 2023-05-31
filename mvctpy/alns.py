@@ -1,12 +1,12 @@
 #!/usr/bin/python3
-from .alns_helper_functions import choose_heuristic, update_weights, update_score, update_temp, accept_solution, plot_results
-from .destroy_heuristics import random_removal, shaw, worst_removal, least_covering
-from .repair_heuristics import greedy_insertion, k_regret, random_insertion
+from alns_helper_functions import choose_heuristic, update_weights, update_score, update_temp, accept_solution, plot_results
+from destroy_heuristics import random_removal, shaw, worst_removal, least_covering
+from repair_heuristics import greedy_insertion, k_regret, random_insertion
 
-from .greedy_set_covering_heuristic import set_covering_solver
-from .tsp_to_mvctp import tsp_to_mvctp_instance as tsp
+from greedy_set_covering_heuristic import set_covering_solver
+from tsp_to_mvctp import tsp_to_mvctp_instance as tsp
 
-from .utils import *
+from utils import *
 
 import argparse
 import math
